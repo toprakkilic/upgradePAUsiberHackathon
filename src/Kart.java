@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public abstract class Kart {
     Random r = new Random();
@@ -8,6 +9,10 @@ public abstract class Kart {
     private String KartNumarasi;
     private String bagliHesap;
 
+
+    public Kart(){
+
+    }
     public Kart(Hesap obj){
         this.setBagliHesap(obj.getHesapNumarasi());
         CVCbelirleyici();
@@ -30,6 +35,19 @@ public abstract class Kart {
         this.setKartNumarasi(gecici + "");
     }
 
+    public void KartSifreBelirleme() {
+        Scanner scanner = new Scanner(System.in);
+        int temp = scanner.nextInt();
+        String temp2 = temp + "";
+
+        while (temp2.length() != 4) {
+            System.out.println("Kart şifreniz 4 haneli olmalıdır!");
+            temp = scanner.nextInt();
+            temp2 = temp + "";
+        }
+
+        this.setSifre(temp2);
+    }
 
     public String getCVC() {
         return CVC;
@@ -68,6 +86,6 @@ public abstract class Kart {
     }
 
     public void setSifre(String sifre) {
-        Sifre = sifre;
+            Sifre = sifre;
     }
 }

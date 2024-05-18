@@ -5,14 +5,15 @@ public class Hesap {
     private String isim;
     private String soyisim;
     private String telefonNumarasi;
-    private String dogumTarihi; //aralarında -ler olamlı
+    private String dogumTarihi; // aralarında -ler olamlı
     private String sifre; // 6 haneli olması gerekir
     private String iBan;
     private String hesapNumarasi; // 12 haneli olmali
     private double hesapBakiyesi = 0;
+    private boolean krediKarti = false;
 
-
-    Hesap(String id, String isim, String soyisim, String telefonNumarasi, String dogumGunu, String dogumAyi, String dogumYili, String sifre) {
+    Hesap(String id, String isim, String soyisim, String telefonNumarasi, String dogumGunu, String dogumAyi,
+            String dogumYili, String sifre) {
         StringBuilder dogumtarihi = new StringBuilder(10);
         int yil = Integer.parseInt(dogumYili);
         boolean b = true;
@@ -101,9 +102,7 @@ public class Hesap {
 
     public void bankaKartiOlustur() {
 
-
     }
-
 
     public String getId() {
         return id;
@@ -175,5 +174,13 @@ public class Hesap {
 
     public void setHesapBakiyesi(double hesapBakiyesi) {
         this.hesapBakiyesi = hesapBakiyesi;
+    }
+
+    public boolean getKrediKarti() {
+        return this.krediKarti;
+    }
+
+    public void setKrediKarti(boolean b) {
+        this.krediKarti = b;
     }
 }
