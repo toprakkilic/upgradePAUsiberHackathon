@@ -50,6 +50,27 @@ public class Hesap {
         }
     }
 
+    Hesap(String id, String isim, String soyisim, String telefonNumarasi, String dogumGunu, String dogumAyi,
+            String dogumYili, String sifre, String hesapNumarasi, double hesapBakiyesi, String iBan, int krediKarti) {
+        StringBuilder dogumtarihi = new StringBuilder(10);
+
+            dogumtarihi.append(dogumYili);
+            dogumtarihi.append("-");
+            dogumtarihi.append(dogumAyi);
+            dogumtarihi.append("-");
+            dogumtarihi.append(dogumGunu);
+            this.setDogumTarihi(dogumtarihi.toString());
+            this.setId(id);
+            this.setIsim(isim);
+            this.setSoyisim(soyisim);
+            this.setTelefonNumarasi(telefonNumarasi);
+            this.setSifre(sifre);
+            this.setHesapNumarasi(hesapNumarasi);
+            this.setHesapBakiyesi(hesapBakiyesi);
+            this.setiBan(iBan);
+            this.setKrediKarti(krediKarti)
+    }
+
     public String toString() {
         String hesap = "Hesap Sahibinin Adı ve Soyadı = " + this.getIsim() + ", " + this.getSoyisim() +
                 "\nHesap Sahibinin TC numarası = " + this.getId() +
@@ -181,11 +202,11 @@ public class Hesap {
         this.hesapBakiyesi = hesapBakiyesi;
     }
 
-    public boolean getKrediKarti() {
+    public int getKrediKarti() {
         return this.krediKarti;
     }
 
-    public void setKrediKarti(boolean b) {
-        this.krediKarti = b;
+    public void setKrediKarti(int krediKarti) {
+        this.krediKarti = krediKarti;
     }
 }
