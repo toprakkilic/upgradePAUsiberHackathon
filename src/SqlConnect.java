@@ -42,8 +42,23 @@ public class SqlConnect {
             return hesap;
         }
     }
-    public static void insertInf() throws SQLException{
-
+    public static void insertInf(Hesap hesap) throws SQLException{
+        Connection connection = null;
+        SqlConnect helper = new SqlConnect();
+        Statement statement = null;
+        ResultSet resultSet ;
+        try {
+            connection = helper.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("insert into bankahesabi.hesap " +
+                    "(hesapNumarasi,isim,soyisim,telefonNumarasi,dogumTarihi,sifre,iBan,tc,hesapBakiyesi,krediKarti) " +
+                    "values('"+hesap.getHesapNumarasi() +"','"+hesap.getIsim()+"','"+hesap.getSoyisim()+"','"+hesap.getTelefonNumarasi()+"','"+hesap.getDogumTarihi()+"'," +
+                    "'"+hesap.getSifre()+"','"+hesap.getiBan()+"','"+hesap.getId()+"',"+ hesap.getHesapBakiyesi()+","+hesap.getKrediKarti()+")");
+        }catch (SQLException exc){
+            helper.showErrorMsg(exc);
+        }finally {
+            connection.close();
+        }
     }
 
     public static void updateInf() throws SQLException{
