@@ -3,10 +3,18 @@ import java.util.Random;
 public abstract class Kart {
     Random r = new Random();
     private String CVC;
-    private String  SKT;
+    private String SKT;
     private String Sifre;
-    private String KartNumarası;
-    private String bagliOlunanHesap;
+    private String KartNumarasi;
+    private String bagliHesap;
+
+    public Kart(Hesap obj){
+        this.setBagliHesap(obj.getHesapNumarasi());
+        CVCbelirleyici();
+        SKTbelirleyici();
+        KartNumarasiBelirleyici();
+
+    }
 
     public void CVCbelirleyici(){
         this.setCVC(r.nextInt(99, 999) + "");
@@ -16,8 +24,10 @@ public abstract class Kart {
         this.setSKT(23052005 + "");
     }
 
-    public void KartNumarasıBelirleyici(){
-        this.setKartNumarası("T");
+    public void KartNumarasiBelirleyici(){
+        Random random = new Random();
+        long gecici = random.nextLong(999999999999999L, 10000000000000000L);
+        this.setKartNumarasi(gecici + "");
     }
 
 
@@ -37,20 +47,20 @@ public abstract class Kart {
         this.SKT = SKT;
     }
 
-    public String getKartNumarası() {
-        return KartNumarası;
+    public String getKartNumarasi() {
+        return KartNumarasi;
     }
 
-    public void setKartNumarası(String kartNumarası) {
-        KartNumarası = kartNumarası;
+    public void setKartNumarasi(String kartNumarasi) {
+        KartNumarasi = kartNumarasi;
     }
 
-    public String getBagliOlunanHesap() {
-        return bagliOlunanHesap;
+    public String getBagliHesap() {
+        return bagliHesap;
     }
 
-    public void setBagliOlunanHesap(String bagliOlunanHesap) {
-        this.bagliOlunanHesap = bagliOlunanHesap;
+    public void setBagliHesap(String bagliHesap) {
+        this.bagliHesap = bagliHesap;
     }
 
     public String getSifre() {
