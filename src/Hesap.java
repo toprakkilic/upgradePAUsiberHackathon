@@ -23,7 +23,7 @@ public class Hesap {
             b = false;
         }
 
-        if (id.lenght() != 11) { //!TcKontrol.kontrol(id)
+        if (id.length() != 11) { //!TcKontrol.kontrol(id)
             System.out.println("Gecersiz bir TC kimlik numarası girdiniz!");
             b = false;
         }
@@ -68,7 +68,7 @@ public class Hesap {
             this.setHesapNumarasi(hesapNumarasi);
             this.setHesapBakiyesi(hesapBakiyesi);
             this.setiBan(iBan);
-            this.setKrediKarti(krediKarti)
+            this.setKrediKarti(krediKarti);
     }
 
     public String toString() {
@@ -127,7 +127,7 @@ public class Hesap {
     }
 
     public void bankaKartiOlustur() {
-        BankaKarti bankaKarti = BankaKarti();
+        //BankaKarti bankaKarti = BankaKarti();
     }
 
     public String getId() {
