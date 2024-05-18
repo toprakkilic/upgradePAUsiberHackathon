@@ -10,7 +10,7 @@ public class Hesap {
     private String iBan;
     private String hesapNumarasi; // 12 haneli olmalıdır
     private double hesapBakiyesi = 0;
-    private boolean krediKarti = false;
+    private int krediKarti = 0;
 
     Hesap(String id, String isim, String soyisim, String telefonNumarasi, String dogumGunu, String dogumAyi,
             String dogumYili, String sifre) {
@@ -89,7 +89,7 @@ public class Hesap {
         // BANKA KODUMUZ 39567
         String ibanBuilder = "TR" +
                 "39567" +
-                "000000" +
+                "0000000" +
                 this.getHesapNumarasi();
         this.setiBan(ibanBuilder);
     }
