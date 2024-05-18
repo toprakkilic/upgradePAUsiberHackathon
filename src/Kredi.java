@@ -5,7 +5,7 @@ public abstract class Kredi {
 
 
     public void KrediAl (Hesap obj, double maas) {
-        if(!obj.getKrediKarti()) {
+        if(obj.getKrediKarti() == 0) {
             System.out.println("Kredi kartınız olmadığı için kredi başvurusunda bulunamazsınız");
             System.out.println("Önce kredi kartına başvurmanız lazım");
         }else{
