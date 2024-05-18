@@ -64,10 +64,13 @@ public class Hesap {
     }
 
     public String toString() {
-        String hesap = "Hesap Sahibinin Adı ve Soyadı = " + this.getIsim() + ", " + this.getSoyisim() +
+        String hesap = "Hesap Sahibinin Adı Soyadı = " + this.getIsim() + " " + this.getSoyisim() +
                 "\nHesap Sahibinin TC numarası = " + this.getId() +
                 "\nHesap Sahibinin Doğum Tarihi = " + this.getDogumTarihi() +
-                "\nHesap Sahibinin Bakiyesi = " + this.getHesapBakiyesi();
+                "\nHesap Sahibinin Bakiyesi = " + this.getHesapBakiyesi() +
+                "\nHesap numarası = " + this.getHesapNumarasi() +
+                "\niban numarası = " + this.getiBan() +
+                "\nkredi kartı sayısı = " + this.getKrediKarti();
         return hesap;
     }
 
@@ -109,11 +112,11 @@ public class Hesap {
 
     public void paraTransferi(Hesap obj, double miktar) {
         System.out.println("Para transferi ücretimiz 4.38TL dir.");
-        if (getHesapBakiyesi() < miktar + 4.38) {
+        if (this.getHesapBakiyesi() < miktar + 4.38) {
             System.out.println("Para göndermek için yeterli bekiyeniz yoktur");
         } else {
-            setHesapBakiyesi(getHesapBakiyesi() - (miktar + 4.38));
-            System.out.println("Kalan bakiyeniz = " + getHesapBakiyesi());
+            this.setHesapBakiyesi(getHesapBakiyesi() - (miktar + 4.38));
+            System.out.println("Kalan bakiyeniz = " + this.getHesapBakiyesi());
             obj.setHesapBakiyesi(obj.getHesapBakiyesi() + miktar);
         }
     }
