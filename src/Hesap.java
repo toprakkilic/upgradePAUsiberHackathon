@@ -23,7 +23,7 @@ public class Hesap {
             b = false;
         }
 
-        if (!TcKontrol.kontrol(id)) {
+        if (id.lenght() != 11) { //!TcKontrol.kontrol(id)
             System.out.println("Gecersiz bir TC kimlik numarası girdiniz!");
             b = false;
         }
