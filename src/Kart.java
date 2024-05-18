@@ -47,6 +47,8 @@ public abstract class Kart {
         }
 
         this.setSifre(temp2);
+
+        scanner.close();
     }
 
     public String getCVC() {

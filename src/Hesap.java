@@ -5,10 +5,10 @@ public class Hesap {
     private String isim;
     private String soyisim;
     private String telefonNumarasi;
-    private String dogumTarihi; // aralarında -ler olamlı
-    private String sifre; // 6 haneli olması gerekir
+    private String dogumTarihi; // aralarında "-"ler olmalıdır
+    private String sifre; // 6 haneli olmalıdır
     private String iBan;
-    private String hesapNumarasi; // 12 haneli olmali
+    private String hesapNumarasi; // 12 haneli olmalıdır
     private double hesapBakiyesi = 0;
     private boolean krediKarti = false;
 
@@ -19,12 +19,17 @@ public class Hesap {
         boolean b = true;
 
         if (yil <= 1904) {
-            System.out.println("120 yaşın üzerine banka hesabı açamıyoruz.");
+            System.out.println("120 yaşın üzerine banka hesabı açılmamaktadır.");
             b = false;
         }
 
         if (!TcKontrol.kontrol(id)) {
-            System.out.println("Gecersiz bir TC kimlik numarası girdiniz");
+            System.out.println("Gecersiz bir TC kimlik numarası girdiniz!");
+            b = false;
+        }
+
+        if (sifre.length() != 6) {
+            System.out.println("Şifreniz 6 haneli olmalıdır!");
             b = false;
         }
 
@@ -101,7 +106,7 @@ public class Hesap {
     }
 
     public void bankaKartiOlustur() {
-
+        BankaKarti bankaKarti = BankaKarti();
     }
 
     public String getId() {
