@@ -50,16 +50,8 @@ public class Hesap {
         }
     }
 
-    Hesap(String id, String isim, String soyisim, String telefonNumarasi, String dogumGunu, String dogumAyi,
-            String dogumYili, String sifre, String hesapNumarasi, double hesapBakiyesi, String iBan, int krediKarti) {
-        StringBuilder dogumtarihi = new StringBuilder(10);
-
-            dogumtarihi.append(dogumYili);
-            dogumtarihi.append("-");
-            dogumtarihi.append(dogumAyi);
-            dogumtarihi.append("-");
-            dogumtarihi.append(dogumGunu);
-            this.setDogumTarihi(dogumtarihi.toString());
+    public Hesap(String id, String isim, String soyisim, String telefonNumarasi, String dogumTarihi, String sifre, String hesapNumarasi, double hesapBakiyesi, String iBan, int krediKarti) {
+            this.setDogumTarihi(dogumTarihi);
             this.setId(id);
             this.setIsim(isim);
             this.setSoyisim(soyisim);
