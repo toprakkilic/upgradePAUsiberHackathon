@@ -1,15 +1,11 @@
 import java.util.Scanner;
-public abstract class Kredi {
-    public double krediCarpani = 0.97;
+public class Kredi {
     private double krediBorcu = 0;
     private double maas;
     private double maxkrediMiktari;
     public double faizOrani = 2.49;
 
 
-    public void maxKrediHesaplayici(){
-        maxkrediMiktari = maas * 6;
-    }
 
 
     public void KrediAl (Hesap obj) {
@@ -55,6 +51,7 @@ public abstract class Kredi {
         else {
             krediBorcu -= odemeMiktari;
             System.out.println("Kredi borcunuzun bir kismi odenmistir ");
+            System.out.println("Kalan kredi borcunuz = " + krediBorcu);
 
         }
 

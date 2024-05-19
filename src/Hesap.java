@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Hesap {
     private String id;
@@ -11,6 +12,8 @@ public class Hesap {
     private String hesapNumarasi; // 12 haneli olmalıdır
     private double hesapBakiyesi = 0;
     private int krediKarti = 0;
+    private boolean krediAlindi = false;
+    private Kredi alinankredi;
 
     Hesap(String id, String isim, String soyisim, String telefonNumarasi, String dogumGunu, String dogumAyi,
             String dogumYili, String sifre) {
@@ -131,6 +134,25 @@ public class Hesap {
         KrediKarti krediKarti1 = new KrediKarti(obj,maas);
     }
 
+    public void krediBasvur(Hesap hesap){
+        Scanner scanner = new Scanner(System.in);
+        if (krediAlindi == false){
+            System.out.println("Krediye basvurabilirsiniz");
+            System.out.println("Maasinizi giriniz:");
+            double gMaas = scanner.nextDouble();
+            setAlinankredi(new Kredi());
+            getAlinankredi().KrediAl(hesap);
+        }
+        else {
+            System.out.println("Zaten kredi aldığınız için bir daha kredi alamazsınız");
+        }
+    }
+
+    public void krediOde(Hesap obj){
+        this.getAlinankredi().krediBorcuOdeme(obj);
+    }
+
+
     public String getId() {
         return id;
     }
@@ -209,5 +231,21 @@ public class Hesap {
 
     public void setKrediKarti(int krediKarti) {
         this.krediKarti = krediKarti;
+    }
+
+    public boolean isKrediAlindi() {
+        return krediAlindi;
+    }
+
+    public void setKrediAlindi(boolean krediAlindi) {
+        this.krediAlindi = krediAlindi;
+    }
+
+    public Kredi getAlinankredi() {
+        return alinankredi;
+    }
+
+    public void setAlinankredi(Kredi alinankredi) {
+        this.alinankredi = alinankredi;
     }
 }

@@ -86,9 +86,11 @@ public class Main {
             } while (secim != 0 || secim != 13);
         }
 
-        public void hesapIslemleri (String TCNO){
+        public void hesapIslemleri (String TCNO) throws SQLException {
+            SqlConnect conn = new SqlConnect();
             Scanner scanner = new Scanner(System.in);
             int secim = 0;
+            String yeniSifre;
 
             do {
                 System.out.println("------------------------------");
@@ -98,11 +100,43 @@ public class Main {
                 System.out.println("4- Hesap bilgileri listeleme");
                 System.out.println("0- Geri dönme");
                 System.out.println("------------------------------");
+                System.out.println("Secmek istediginiz menuyu yaziniz.");
+                secim = scanner.nextInt();
                 switch (secim) {
                     case 1:
+                        System.out.println("Yeni sifrenizi giriniz");
+                        yeniSifre = scanner.nextLine();
+                        if (yeniSifre.length() == 6){
+                            System.out.println("Sifreniz basariyla degistirildi yeni sifreniz = " + yeniSifre);
+                            conn.updateInfStr(conn.selectInf("tc", TCNO), "sifre", yeniSifre);
+                        }
+                        else {
+                            System.out.println("Sifreniz 6 haneli olmali");
+                        }
+                            break;
+
                     case 2:
+                        System.out.println("Yeni Telefon numaranızı giriniz");
+                        String yeniTelNo = scanner.nextLine();
+                        if (yeniTelNo.length() == 11){
+                            System.out.println("Sifreniz basariyla degistirildi yeni sifreniz = " + yeniTelNo);
+                            conn.updateInfStr(conn.selectInf("tc", TCNO), "telefonNumarasi", yeniTelNo);
+                        }
+                        else {
+                            System.out.println("telefon numaraniz 11 haneli olmali");
+                        }
+                        break;
                     case 3:
+                        if (conn.selectInf("tc", TCNO).getHesapBakiyesi() != 0){
+                            System.out.println("Paraniz varken hesap silemezsiniz");
+                            System.out.println("Once paranizi cekmeniz gerekir");
+                        }
+                        else {
+                            conn.deleteInf(conn.selectInf("tc", TCNO));
+                            System.out.println("Hesabiniz basariyla silindi");
+                        }
                     case 4:
+                        conn.selectInf("tc", TCNO).toString();
                     case 0:
                     default: System.out.println("Geçersiz bir işlem numarası girdiniz. Tekrar deneyin");
                 }
@@ -121,6 +155,7 @@ public class Main {
                 System.out.println("3- Kredi kartı limit arttırma");
                 System.out.println("4- Kredi kartı başvurusu");
                 System.out.println("5-Kredi kartı şifresi değiştirme");
+                System.out.println("0- Geri dön");
                 System.out.println("------------------------------");
                 secim = scanner.nextInt();
                 if(conn.selectInf("tc", TCNO).getKrediKarti() == 0){
@@ -148,8 +183,9 @@ public class Main {
             } while (secim != 0);
         }
 
-        public void krediIslemleri (String id){
+        public void krediIslemleri (String TCNO) throws SQLException {
             Scanner scanner = new Scanner(System.in);
+            SqlConnect conn = new SqlConnect();
             int secim = 0;
             do {
                 System.out.println("------------------------------");
@@ -162,7 +198,12 @@ public class Main {
 
                 switch(secim){
                     case 1:
+                        conn.selectInf("tc", TCNO).krediOde(conn.selectInf("tc", TCNO));
+                        break;
                     case 2:
+                        conn.selectInf("tc", TCNO).krediBasvur(conn.selectInf("tc", TCNO));
+                        break;
+
                     case 0:
                     default:
                         System.out.println("Geçersiz bir işlem numarası girdiniz. Tekrar deneyin");
