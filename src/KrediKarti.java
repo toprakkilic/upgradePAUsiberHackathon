@@ -4,11 +4,10 @@ public class KrediKarti extends Kart{
     private double krediKartiLimiti;
     private double krediKartiBorcu = 0;
     private double maas;
-    private double faizOrani = 5;    
-
+    private double faizOrani = 5;
 
     // kredi kartı limiti kişinin maaşının 3 katı olmalı
-    public void KrediKartiBasvurusu(Hesap obj, Double maas) {
+    public  KrediKarti (Hesap obj, Double maas) {
         if (maas > 5000){
             super.setBagliHesap(obj.getHesapNumarasi());
             super.CVCbelirleyici();
@@ -16,27 +15,27 @@ public class KrediKarti extends Kart{
             super.KartNumarasiBelirleyici();
             System.out.println("Kredi karti cikartmaya uygunsunuz.");
             System.out.println("Limitiniz: " + maas * 3);
-            this.maas = maas;
-            krediKartiLimiti = maas * 3;
+            this.setMaas(maas);
+            setKrediKartiLimiti(maas * 3);
             
         } else {
             System.out.println("Kredi kartı çıkartmaya uygun değilsiniz!");
         }
     }
     public void limitArttirma(){
-        double krediKartiLimiti = maas * 5;
+        double krediKartiLimiti = getMaas() * 5;
         System.out.println("Kredi kartı limitinizi maaşınızın 5 katına çıkarttık");
         System.out.println("Kredi kartı limitinizi arttırmak Faiz oranınızı arttırır");
-        faizOrani = faizOrani * 1.5;
+        setFaizOrani(getFaizOrani() * 1.5);
         
     }
 
 
     public void krediKartiHarcama(double tutar){
-        if(tutar <= krediKartiLimiti - krediKartiBorcu){
-            krediKartiBorcu += tutar;
+        if(tutar <= getKrediKartiLimiti() - getKrediKartiBorcu()){
+            setKrediKartiBorcu(getKrediKartiBorcu() + tutar);
             System.out.println("Harcamanız başarıyla yapıldı.");
-            System.out.println("Güncel borcunuz = " + krediKartiBorcu);
+            System.out.println("Güncel borcunuz = " + getKrediKartiBorcu());
         }
         else{
             System.out.println("Limitiniz yetersiz olduğu için harcama yapamadınız!");
@@ -48,15 +47,47 @@ public class KrediKarti extends Kart{
         System.out.println("Her borc odedikten sonra borcunuza faiz eklenir");
         if(tutar <= obj.getHesapBakiyesi()){
             obj.setHesapBakiyesi(obj.getHesapBakiyesi() - tutar);
-            krediKartiBorcu -= tutar;
-            krediKartiBorcu = krediKartiBorcu * faizOrani / 30;
+            setKrediKartiBorcu(getKrediKartiBorcu() - tutar);
+            setKrediKartiBorcu(getKrediKartiBorcu() * getFaizOrani() / 30);
         }
         else{
             System.out.println("Kredi kartı borcunuzu ödemek için yeterli bakiyeniz yoktur.");
             System.out.println("Kredi kartı borcunuza faiz eklenmistir");
-            krediKartiBorcu = krediKartiBorcu * faizOrani / 30;
+            setKrediKartiBorcu(getKrediKartiBorcu() * getFaizOrani() / 30);
         }
 
         
+    }
+
+    public double getKrediKartiLimiti() {
+        return krediKartiLimiti;
+    }
+
+    public void setKrediKartiLimiti(double krediKartiLimiti) {
+        this.krediKartiLimiti = krediKartiLimiti;
+    }
+
+    public double getKrediKartiBorcu() {
+        return krediKartiBorcu;
+    }
+
+    public void setKrediKartiBorcu(double krediKartiBorcu) {
+        this.krediKartiBorcu = krediKartiBorcu;
+    }
+
+    public double getMaas() {
+        return maas;
+    }
+
+    public void setMaas(double maas) {
+        this.maas = maas;
+    }
+
+    public double getFaizOrani() {
+        return faizOrani;
+    }
+
+    public void setFaizOrani(double faizOrani) {
+        this.faizOrani = faizOrani;
     }
 }

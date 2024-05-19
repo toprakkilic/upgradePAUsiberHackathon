@@ -127,6 +127,10 @@ public class Hesap {
         //BankaKarti bankaKarti = BankaKarti();
     }
 
+    public void krediKartiBasvur(Hesap obj, double maas){
+        KrediKarti krediKarti1 = new KrediKarti(obj,maas);
+    }
+
     public String getId() {
         return id;
     }
