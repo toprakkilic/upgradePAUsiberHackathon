@@ -104,13 +104,13 @@ public class Main {
             } while (secim != 0);
         }
 
-        public void krediIslemleri (String NO){
+        public void krediIslemleri (String id){
             Scanner scanner = new Scanner(System.in);
             int secim = 0;
             do {
                 System.out.println("1- Kredi borcu görüntüleme");
                 System.out.println("2- Kredi başvurusu");
-                System.out.println("0- Geri dönme");
+                System.out.println("0- Geri dön");
 
 
             } while (secim != 0);
