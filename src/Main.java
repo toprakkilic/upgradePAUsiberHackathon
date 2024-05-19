@@ -7,13 +7,17 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws SQLException{
-        //Hesap hesap = new Hesap("11111111111", "isim", "soyisim", "05XXXXXXXXX", "05", "08", "2004", "123456");
+        Hesap hesap = new Hesap("12345678912", "isim", "soyisim", "05XXXXXXXX2", "01", "01", "2004", "123456");
+        hesap.paraYatir(500);
+        //System.out.println(hesap);
+
+        SqlConnect con = new SqlConnect();
+        con.insertInf(hesap);
+
 
         //System.out.println(hesap);
-        //hesap.paraYatir(500);
-        //System.out.println(hesap);
-        SqlConnect conn = new SqlConnect();
-        System.out.println((conn.selectInf("iBan","TR395670000000583716811725")).toString());
+        //SqlConnect conn = new SqlConnect();
+        //System.out.println((conn.selectInf("iBan","TR395670000000583716811725")).toString());
 
 
     }

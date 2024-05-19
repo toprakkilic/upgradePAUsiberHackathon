@@ -14,7 +14,6 @@ public class Hesap {
 
     Hesap(String id, String isim, String soyisim, String telefonNumarasi, String dogumGunu, String dogumAyi,
             String dogumYili, String sifre) {
-        StringBuilder dogumtarihi = new StringBuilder(10);
         int yil = Integer.parseInt(dogumYili);
         boolean b = true;
 
@@ -34,6 +33,7 @@ public class Hesap {
         }
 
         if (b) {
+            StringBuilder dogumtarihi = new StringBuilder(10);
             dogumtarihi.append(dogumYili);
             dogumtarihi.append("-");
             dogumtarihi.append(dogumAyi);
@@ -70,7 +70,9 @@ public class Hesap {
                 "\nHesap Sahibinin Bakiyesi = " + this.getHesapBakiyesi() +
                 "\nHesap numarası = " + this.getHesapNumarasi() +
                 "\niban numarası = " + this.getiBan() +
-                "\nkredi kartı sayısı = " + this.getKrediKarti();
+                "\nkredi kartı sayısı = " + this.getKrediKarti() +
+                "\ntelefon numarası = " + this.getTelefonNumarasi() +
+                "\nşifre = " + this.getSifre();
         return hesap;
     }
 

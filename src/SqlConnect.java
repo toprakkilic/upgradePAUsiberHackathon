@@ -1,8 +1,8 @@
 import java.sql.*;
-import java.util.ArrayList;
+
 public class SqlConnect {
     private String userName = "root";
-    private String password = "Uph1824";
+    private String password = "1234";
     private String dbUrl = "jdbc:mysql://localhost:3306/bankahesabi";
 
     public SqlConnect(){
@@ -15,7 +15,7 @@ public class SqlConnect {
         Connection connection = null;
         SqlConnect helper = new SqlConnect();
         Statement statement = null;
-        ResultSet resultSet ;
+        ResultSet resultSet;
         Hesap hesap = null;
         try{
             connection = helper.getConnection();
@@ -45,19 +45,29 @@ public class SqlConnect {
     public static void insertInf(Hesap hesap) throws SQLException{
         Connection connection = null;
         SqlConnect helper = new SqlConnect();
-        Statement statement = null;
-        ResultSet resultSet ;
+        PreparedStatement statement = null;
+        ResultSet resultSet;
         try {
             connection = helper.getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("insert into bankahesabi.hesap " +
-                    "(hesapNumarasi,isim,soyisim,telefonNumarasi,dogumTarihi,sifre,iBan,tc,hesapBakiyesi,krediKarti) " +
-                    "values('"+hesap.getHesapNumarasi() +"','"+hesap.getIsim()+"','"+hesap.getSoyisim()+"','"+hesap.getTelefonNumarasi()+"','"+hesap.getDogumTarihi()+"'," +
-                    "'"+hesap.getSifre()+"','"+hesap.getiBan()+"','"+hesap.getId()+"',"+ hesap.getHesapBakiyesi()+","+hesap.getKrediKarti()+")");
+            String sql = "insert into bankahesabi.hesap (hesapNumarasi,isim,soyisim,telefonNumarasi,dogumTarihi,sifre,iBan,tc,hesapBakiyesi,krediKarti) values(?,?,?,?,?,?,?,?,?,?)";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, hesap.getHesapNumarasi());
+            statement.setString(2, hesap.getIsim());
+            statement.setString(3, hesap.getSoyisim());
+            statement.setString(4, hesap.getTelefonNumarasi());
+            statement.setString(5, hesap.getDogumTarihi());
+            statement.setString(6, hesap.getSifre());
+            statement.setString(7, hesap.getiBan());
+            statement.setString(8, hesap.getId());
+            statement.setDouble(9, hesap.getHesapBakiyesi());
+            statement.setInt(10, hesap.getKrediKarti());
+            int result = statement.executeUpdate();
+
         }catch (SQLException exc){
             helper.showErrorMsg(exc);
         }finally {
             connection.close();
+            System.out.println("bilgiler girildi");
         }
     }
 
